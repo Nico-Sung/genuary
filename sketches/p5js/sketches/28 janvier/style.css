@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    color: #111;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.stage {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.frame {
+    position: relative;
+    width: min(90vmin, 640px);
+    aspect-ratio: 1 / 1;
+    background: #f8f8f8;
+    border: 6px solid #111;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.grid {
+    position: absolute;
+    inset: 6% 6% 12% 6%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 0;
+}
+
+.cell {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cell::before,
+.cell::after {
+    content: "";
+    position: absolute;
+    inset: 20%;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    border-radius: var(--round, 0%);
+    transform: rotate(var(--rot, 0deg)) scale(var(--scale, 1));
+}
+
+.cell::after {
+    inset: 30%;
+    border: 0;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: var(--round2, 50%);
+    transform: rotate(calc(var(--rot, 0deg) * -1)) scale(var(--scale2, 1));
+}
+
+.cell:nth-child(3n) {
+    --round: 50%;
+}
+.cell:nth-child(4n) {
+    --rot: 45deg;
+}
+.cell:nth-child(5n) {
+    --scale: 0.8;
+}
+.cell:nth-child(6n) {
+    --round2: 20%;
+}
+.cell:nth-child(7n) {
+    --scale2: 1.25;
+}
+.cell:nth-child(8n) {
+    --rot: -30deg;
+}
+.cell:nth-child(9n) {
+    --scale: 1.15;
+}
+.cell:nth-child(10n) {
+    --round: 12%;
+}
+
+.cell:nth-child(2n)::after {
+    background: rgba(0, 0, 0, 0.12);
+}
+.cell:nth-child(11n)::before {
+    border-width: 3px;
+}
+.cell:nth-child(13n) {
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.orbit {
+    position: absolute;
+    inset: 14% 14% 20% 14%;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.orbit::before,
+.orbit::after {
+    content: "";
+    position: absolute;
+    inset: 22%;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+}
+
+.orbit::after {
+    inset: 40%;
+    border-width: 1px;
+}
+
+.label {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 4%;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: clamp(10px, 1.4vmin, 14px);
+    color: rgba(0, 0, 0, 0.7);
+}
