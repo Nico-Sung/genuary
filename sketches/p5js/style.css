@@ -1,28 +1,34 @@
-/* --- Design moderne original --- */
+/* --- Design ZINZIN — psychédélique, néon, punchy --- */
 :root {
-    --bg: #070809;
+    --bg: #0a0612;
     --bg-mesh: radial-gradient(
-            ellipse 90% 60% at 50% -15%,
-            rgba(6, 182, 212, 0.07),
-            transparent
+            ellipse 100% 80% at 50% -20%,
+            rgba(255, 0, 128, 0.12),
+            transparent 50%
         ),
         radial-gradient(
-            ellipse 70% 50% at 0% 80%,
-            rgba(6, 182, 212, 0.04),
-            transparent
+            ellipse 80% 60% at 100% 50%,
+            rgba(0, 255, 255, 0.08),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse 70% 50% at 0% 100%,
+            rgba(255, 200, 0, 0.06),
+            transparent 50%
         );
-    --surface: rgba(15, 17, 21, 0.6);
-    --surface-hover: rgba(15, 17, 21, 0.9);
-    --border: rgba(255, 255, 255, 0.06);
-    --border-accent: rgba(6, 182, 212, 0.35);
-    --text: #e8e6e3;
-    --text-soft: #9ca3af;
-    --muted: #6b7280;
-    --accent: #06b6d4;
-    --accent-hover: #22d3ee;
-    --accent-glow: rgba(6, 182, 212, 0.2);
-    --radius: 14px;
-    --radius-sm: 10px;
+    --surface: rgba(20, 10, 30, 0.7);
+    --surface-hover: rgba(40, 15, 55, 0.9);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f0e6ff;
+    --text-soft: #c4b0e0;
+    --muted: #8870a0;
+    --accent-1: #ff0080;
+    --accent-2: #00ffff;
+    --accent-3: #ffcc00;
+    --accent-glow-1: rgba(255, 0, 128, 0.35);
+    --accent-glow-2: rgba(0, 255, 255, 0.25);
+    --radius: 18px;
+    --radius-sm: 12px;
     --font: "Outfit", system-ui, sans-serif;
 }
 
@@ -51,70 +57,102 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- Header --- */
+/* --- Header Zinzin --- */
 .header {
     padding: clamp(2.5rem, 6vw, 4rem) 1.5rem 2rem;
     text-align: center;
-    border-bottom: 1px solid var(--border);
-    background: rgba(7, 8, 9, 0.5);
-    backdrop-filter: blur(10px);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-1),
+            var(--accent-2),
+            var(--accent-3),
+            var(--accent-1),
+            transparent
+        )
+        1;
+    background: rgba(10, 6, 18, 0.6);
+    backdrop-filter: blur(12px);
 }
 
 .title {
     margin: 0;
-    font-size: clamp(2.25rem, 7vw, 3.75rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: var(--text);
-    background: linear-gradient(135deg, var(--text) 45%, var(--accent) 100%);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(
+        120deg,
+        #ff0080 0%,
+        #ff8c00 25%,
+        #ffcc00 50%,
+        #00ffff 75%,
+        #ff0080 100%
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradient-shift 6s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
 }
 
 .subtitle {
-    margin: 0.625rem 0 0;
-    font-size: 1rem;
+    margin: 0.75rem 0 0;
+    font-size: 1.05rem;
     color: var(--text-soft);
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .header-nav {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
 }
 
 .header-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent);
+    gap: 0.4rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-2);
     text-decoration: none;
-    border: 1px solid var(--border-accent);
+    border: 2px solid var(--accent-2);
     border-radius: var(--radius-sm);
-    background: rgba(6, 182, 212, 0.06);
-    transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+    background: rgba(0, 255, 255, 0.08);
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .header-link:hover,
 .header-link:focus {
-    background: rgba(6, 182, 212, 0.12);
-    color: var(--accent-hover);
-    border-color: var(--accent);
-    transform: translateY(-1px);
+    background: rgba(0, 255, 255, 0.2);
+    color: var(--text);
+    border-color: var(--accent-1);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 24px var(--accent-glow-2);
     outline: none;
 }
 
 .header-link:focus-visible {
-    box-shadow: 0 0 0 3px var(--accent-glow);
+    box-shadow: 0 0 0 4px var(--accent-glow-2);
 }
 
 /* --- Gallery --- */
 .gallery {
     flex: 1;
-    padding: 2rem 1.5rem 3rem;
+    padding: 2.5rem 1.5rem 3.5rem;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -126,17 +164,17 @@ body {
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 @media (min-width: 900px) {
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 }
 
-/* --- Cards --- */
+/* --- Cards Zinzin --- */
 .card {
     margin: 0;
     padding: 0;
@@ -147,40 +185,80 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
-    padding: 1.35rem 1.5rem;
+    padding: 1.5rem 1.6rem;
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius);
     color: inherit;
     text-decoration: none;
-    backdrop-filter: blur(6px);
-    transition: border-color 0.2s, background 0.2s, transform 0.2s,
-        box-shadow 0.2s;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-link::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        var(--accent-1),
+        var(--accent-2),
+        var(--accent-3),
+        var(--accent-1)
+    );
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .card-link:hover,
 .card-link:focus {
-    border-color: var(--border-accent);
+    border-color: transparent;
     background: var(--surface-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-accent);
+    transform: translateY(-6px) rotate(-0.5deg);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-glow-1);
     outline: none;
 }
 
+.card-link:hover::before,
+.card-link:focus::before {
+    opacity: 1;
+    animation: border-flow 2s linear infinite;
+}
+
+@keyframes border-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
 .card-link:focus-visible {
-    box-shadow: 0 0 0 3px var(--accent-glow);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--accent-2);
 }
 
 .card-day {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent-2);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
 }
 
 .card-title {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text);
     line-height: 1.4;
@@ -188,27 +266,37 @@ body {
 
 .card-arrow {
     margin-top: auto;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: var(--muted);
-    transition: color 0.2s, transform 0.2s;
+    transition: color 0.2s, transform 0.3s ease;
 }
 
 .card-link:hover .card-arrow,
 .card-link:focus .card-arrow {
-    color: var(--accent);
-    transform: translateX(4px);
+    color: var(--accent-1);
+    transform: translateX(6px);
 }
 
-/* --- Footer --- */
+/* --- Footer Zinzin --- */
 .footer {
     padding: 1.5rem;
     text-align: center;
-    border-top: 1px solid var(--border);
-    background: rgba(7, 8, 9, 0.4);
+    border-top: 2px solid transparent;
+    border-image: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-1),
+            var(--accent-2),
+            transparent
+        )
+        1;
+    background: rgba(10, 6, 18, 0.7);
+    backdrop-filter: blur(8px);
 }
 
 .footer p {
     margin: 0;
-    font-size: 0.875rem;
-    color: var(--muted);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    font-weight: 500;
 }
