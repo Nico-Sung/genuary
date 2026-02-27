@@ -106,6 +106,7 @@ function botReady() {
 }
 
 function setup() {
+    noCanvas();
     const container = select("#chat-container");
     if (!container) return;
 
