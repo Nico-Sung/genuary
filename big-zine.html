@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>GENUARY 2025 — NICOLAS SUNG — Big Zine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ── PRINT ───────────────────────────────────────────── */
+@page { size: A5; margin: 0; }
+
+@media print {
+  body     { background: none; margin: 0; padding: 0; display: block; }
+  .notice  { display: none; }
+  .divider { display: none; }
+  .page    { box-shadow: none; page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ── VARIABLES (= site) ──────────────────────────────── */
+:root {
+  --bg:     #f8f7f5;
+  --text:   #0a0a0a;
+  --muted:  #666;
+  --accent: #c41e3a;
+  --white:  #ffffff;
+  --font:   'Outfit', system-ui, sans-serif;
+  --m:      10mm;
+}
+
+/* ── BASE ────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: #555;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.notice {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 12px 0 20px;
+  letter-spacing: 0.05em;
+}
+
+.divider {
+  width: 148.5mm;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  margin: 0;
+}
+
+/* ── PAGE ────────────────────────────────────────────── */
+.page {
+  width: 148.5mm;
+  height: 210mm;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  flex-shrink: 0;
+}
+
+.page.dark  { background: var(--text);   color: var(--white); }
+.page.red   { background: var(--accent); color: var(--white); }
+
+/* ── SHARED ──────────────────────────────────────────── */
+.p          { padding: var(--m); }
+.p-sm       { padding: 7mm; }
+.col        { display: flex; flex-direction: column; height: 100%; }
+.between    { justify-content: space-between; }
+.center-y   { justify-content: center; }
+
+.kicker {
+  font-size: 2.2mm;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.rule       { height: 0.4mm; background: currentColor; opacity: 0.12; margin: 3mm 0; }
+.rule-red   { height: 0.6mm; background: var(--accent); margin: 3mm 0; }
+.rule-white { height: 0.4mm; background: var(--white); opacity: 0.2; margin: 3mm 0; }
+
+.body {
+  font-size: 3mm;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.body.on-dark { color: rgba(255,255,255,0.65); }
+.body.on-red  { color: rgba(255,255,255,0.8);  }
+
+/* placeholder image box */
+.img-placeholder {
+  width: 100%;
+  border: 0.4mm dashed rgba(10,10,10,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2mm;
+  color: rgba(10,10,10,0.25);
+}
+.img-placeholder.on-dark {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.25);
+}
+.img-placeholder p {
+  font-size: 2.5mm;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.img-placeholder span {
+  font-size: 2mm;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   P1 — FRONT COVER
+═════════════════════════════════════════════════════════ */
+.p1-title {
+  font-size: 30mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.p1-year {
+  font-size: 30mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.p1-name {
+  font-size: 6mm;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.p1-sub {
+  font-size: 2.2mm;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.3;
+  margin-top: 1mm;
+}
+
+/* ════════════════════════════════════════════════════════
+   P2 — STATEMENT
+═════════════════════════════════════════════════════════ */
+.p2-quote {
+  font-size: 8mm;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+.p2-quote em { color: var(--accent); font-style: normal; }
+
+/* ════════════════════════════════════════════════════════
+   P3 — ABOUT ME
+═════════════════════════════════════════════════════════ */
+.p3-name {
+  font-size: 18mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+.p3-name em { color: var(--accent); font-style: normal; display: block; }
+
+.contact-line {
+  font-size: 3mm;
+  font-weight: 600;
+  line-height: 1.8;
+  color: var(--text);
+}
+.contact-line strong { color: var(--accent); }
+
+/* ════════════════════════════════════════════════════════
+   P4 — LE PROJET
+═════════════════════════════════════════════════════════ */
+.p4-head {
+  font-size: 16mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.p4-head em { color: var(--accent); font-style: normal; display: block; }
+
+/* ════════════════════════════════════════════════════════
+   P5 — L'ART GÉNÉRATIF
+═════════════════════════════════════════════════════════ */
+.p5-head {
+  font-size: 13mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+.p5-head em { color: var(--accent); font-style: normal; }
+
+.definition {
+  border-left: 0.8mm solid var(--accent);
+  padding-left: 3mm;
+  font-size: 3mm;
+  line-height: 1.65;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ════════════════════════════════════════════════════════
+   P6 — 31 JOURS (liste)
+═════════════════════════════════════════════════════════ */
+.sketch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sketch-item {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5mm;
+  border-bottom: 0.1mm solid rgba(10,10,10,0.08);
+  padding: 1.2mm 0;
+}
+.sketch-num  { font-size: 2mm; font-weight: 700; color: var(--accent); min-width: 5mm; }
+.sketch-name { font-size: 3.2mm; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
+.sketch-name.titled { color: var(--text); }
+.sketch-name.untitled { color: var(--muted); font-weight: 600; }
+
+/* ════════════════════════════════════════════════════════
+   P13 — QR CODE
+═════════════════════════════════════════════════════════ */
+.qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5mm;
+  flex: 1;
+}
+.qr-img {
+  width: 55mm;
+  height: 55mm;
+  border: 0.4mm solid rgba(10,10,10,0.1);
+  padding: 3mm;
+  background: var(--white);
+}
+.qr-url {
+  font-size: 3.5mm;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--text);
+}
+.qr-url em { color: var(--accent); font-style: normal; }
+
+/* ════════════════════════════════════════════════════════
+   P14 — COLOPHON
+═════════════════════════════════════════════════════════ */
+.p14-head {
+  font-size: 10mm;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.colophon-line {
+  font-size: 2.5mm;
+  font-weight: 400;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.5);
+}
+.colophon-line strong { color: var(--white); font-weight: 700; }
+
+/* ════════════════════════════════════════════════════════
+   P15 — PATTERN PAGE
+═════════════════════════════════════════════════════════ */
+.pattern-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+}
+
+/* ════════════════════════════════════════════════════════
+   P16 — BACK COVER
+═════════════════════════════════════════════════════════ */
+.p16-quote {
+  font-size: 12mm;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.p16-url {
+  font-size: 3mm;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5);
+}
+</style>
+</head>
+<body>
+
+<p class="notice">
+  IMPRIMER → A5 · Sans marges · Couleurs activées &nbsp;|&nbsp;
+  Imprimer recto/verso · Plier chaque feuille en 2 · Emboîter · Agrafer au centre (saddle-stitch)
+</p>
+
+<!-- ══════════════════════════════════════════════════════════
+     P1 — FRONT COVER
+════════════════════════════════════════════════════════════ -->
+<div class="page dark">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker" style="opacity:0.25;">Creative Coding · Janvier 2025</span>
+    <div>
+      <div class="p1-title">GEN-<br>UARY</div>
+      <div class="p1-year">2025</div>
+    </div>
+    <div>
+      <div class="rule-white" style="margin:0 0 4mm;"></div>
+      <div class="p1-name">Nicolas Sung</div>
+      <div class="p1-sub">31 Sketches · P5.js · GLSL · HTML</div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P2 — STATEMENT
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Ce zine</span>
+    <div class="p2-quote">
+      "LE CODE<br>
+      COMME<br>
+      <em>PINCEAU,</em><br>
+      L'ALGO-<br>
+      RITHME<br>
+      COMME<br>
+      MUSE."
+    </div>
+    <div>
+      <div class="rule"></div>
+      <p class="body">
+        Ce zine documente 31 œuvres d'art génératif créées
+        durant le mois de janvier 2025 dans le cadre du défi
+        mondial <strong>Genuary</strong>. Chaque jour, un prompt.
+        Chaque jour, du code.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P3 — ABOUT ME
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">À propos</span>
+    <div>
+      <div class="p3-name">
+        NICO-<br>
+        LAS<br>
+        <em>SUNG</em>
+      </div>
+      <div class="rule-red"></div>
+    </div>
+    <div class="body" style="color:var(--muted);">
+      Étudiant en design numérique et développement créatif.
+      Passionné par l'intersection du code et de l'art,
+      des systèmes algorithmiques et de la beauté émergente
+      des mathématiques.
+      <br><br>
+      En janvier 2025, j'ai relevé le défi <strong>Genuary</strong> :
+      créer une œuvre générative chaque jour, sans IA générative,
+      en réponse à un prompt imposé.
+    </div>
+    <div class="contact-line">
+      <strong>✉</strong> nicolassung01@gmail.com<br>
+      <strong>◈</strong> github.com/Nico-Sung
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P4 — LE PROJET GENUARY
+════════════════════════════════════════════════════════════ -->
+<div class="page dark">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker" style="opacity:0.25;">Le défi</span>
+    <div>
+      <div class="p4-head">LE<br>PRO-<br><em>JET</em></div>
+      <div class="rule-white" style="margin:4mm 0;"></div>
+    </div>
+    <div class="body on-dark">
+      <strong style="color:#fff;">Genuary</strong> est un défi mondial annuel :
+      chaque jour de janvier, les artistes et développeurs
+      créatifs reçoivent un prompt et produisent une œuvre
+      d'art génératif.
+      <br><br>
+      <strong style="color:#fff;">31 prompts.</strong> 31 jours. 31 sketches.
+      Chaque pièce est codée from scratch en p5.js, GLSL
+      ou HTML pur — aucun asset généré par IA.
+      <br><br>
+      <strong style="color:var(--accent);">→ genuary.art</strong>
+    </div>
+    <div>
+      <div class="rule-white"></div>
+      <span class="kicker" style="opacity:0.2;">Nicolas Sung · Janvier 2025</span>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P5 — L'ART GÉNÉRATIF
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Art génératif</span>
+    <div>
+      <div class="p5-head">
+        L'ART<br>
+        <em>GÉNÉ-</em><br>
+        RATIF
+      </div>
+    </div>
+    <div class="definition">
+      L'art génératif naît de systèmes — algorithmes,
+      règles, hasard contrôlé. L'artiste définit un
+      processus, la machine l'exécute. Le résultat
+      émerge de l'interaction entre l'intention
+      humaine et l'imprévisibilité du code.
+    </div>
+    <div class="body" style="margin-top:3mm;">
+      Pioneers : Vera Molnár, Harold Cohen, Casey Reas,
+      Manfred Mohr. Outils : p5.js, Processing, GLSL,
+      TouchDesigner, openFrameworks.
+    </div>
+    <div class="rule"></div>
+    <span class="kicker">Code · Math · Système · Émergence</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P6 — LES 31 JOURS
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p-sm col" style="height:100%;">
+    <span class="kicker" style="margin-bottom:2mm;">Les 31 prompts · Genuary 2025</span>
+    <div class="sketch-list" style="flex:1;">
+      <div class="sketch-item"><span class="sketch-num">01</span><span class="sketch-name titled">One Color, One Shape</span></div>
+      <div class="sketch-item"><span class="sketch-num">02</span><span class="sketch-name titled">Squash &amp; Stretch</span></div>
+      <div class="sketch-item"><span class="sketch-num">03</span><span class="sketch-name titled">Fibonacci Forever</span></div>
+      <div class="sketch-item"><span class="sketch-num">04</span><span class="sketch-name titled">Lowres</span></div>
+      <div class="sketch-item"><span class="sketch-num">05</span><span class="sketch-name titled">Write "Genuary"</span></div>
+      <div class="sketch-item"><span class="sketch-num">06</span><span class="sketch-name titled">Lights On / Off</span></div>
+      <div class="sketch-item"><span class="sketch-num">07</span><span class="sketch-name untitled">Jour 07</span></div>
+      <div class="sketch-item"><span class="sketch-num">08</span><span class="sketch-name untitled">Jour 08</span></div>
+      <div class="sketch-item"><span class="sketch-num">09</span><span class="sketch-name untitled">Jour 09</span></div>
+      <div class="sketch-item"><span class="sketch-num">10</span><span class="sketch-name untitled">Jour 10</span></div>
+      <div class="sketch-item"><span class="sketch-num">11</span><span class="sketch-name untitled">Jour 11</span></div>
+      <div class="sketch-item"><span class="sketch-num">12</span><span class="sketch-name untitled">Jour 12</span></div>
+      <div class="sketch-item"><span class="sketch-num">13</span><span class="sketch-name untitled">Jour 13</span></div>
+      <div class="sketch-item"><span class="sketch-num">14</span><span class="sketch-name untitled">Jour 14</span></div>
+      <div class="sketch-item"><span class="sketch-num">15</span><span class="sketch-name untitled">Jour 15</span></div>
+      <div class="sketch-item"><span class="sketch-num">16</span><span class="sketch-name untitled">Jour 16</span></div>
+      <div class="sketch-item"><span class="sketch-num">17</span><span class="sketch-name untitled">Jour 17</span></div>
+      <div class="sketch-item"><span class="sketch-num">18</span><span class="sketch-name untitled">Jour 18</span></div>
+      <div class="sketch-item"><span class="sketch-num">19</span><span class="sketch-name untitled">Jour 19</span></div>
+      <div class="sketch-item"><span class="sketch-num">20</span><span class="sketch-name untitled">Jour 20</span></div>
+      <div class="sketch-item"><span class="sketch-num">21</span><span class="sketch-name untitled">Jour 21</span></div>
+      <div class="sketch-item"><span class="sketch-num">22</span><span class="sketch-name untitled">Jour 22</span></div>
+      <div class="sketch-item"><span class="sketch-num">23</span><span class="sketch-name untitled">Jour 23</span></div>
+      <div class="sketch-item"><span class="sketch-num">24</span><span class="sketch-name untitled">Jour 24</span></div>
+      <div class="sketch-item"><span class="sketch-num">25</span><span class="sketch-name untitled">Jour 25</span></div>
+      <div class="sketch-item"><span class="sketch-num">26</span><span class="sketch-name untitled">Recursive Grids</span></div>
+      <div class="sketch-item"><span class="sketch-num">27</span><span class="sketch-name untitled">Jour 27</span></div>
+      <div class="sketch-item"><span class="sketch-num">28</span><span class="sketch-name titled">HTML Only</span></div>
+      <div class="sketch-item"><span class="sketch-num">29</span><span class="sketch-name untitled">Jour 29</span></div>
+      <div class="sketch-item"><span class="sketch-num">30</span><span class="sketch-name untitled">Jour 30</span></div>
+      <div class="sketch-item"><span class="sketch-num">31</span><span class="sketch-name titled">GLSL Day</span></div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P7 — IMAGE VECTORIELLE
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Image vectorielle · Premiers cours</span>
+    <div class="img-placeholder" style="flex:1; margin:4mm 0;">
+      <!--
+        ⬇ REMPLACE CE BLOC par ton image :
+        <img src="ton-image-vectorielle.svg" style="width:100%;height:100%;object-fit:contain;">
+      -->
+      <svg width="20mm" height="20mm" viewBox="0 0 80 80" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5">
+        <rect x="10" y="10" width="60" height="60" rx="2"/>
+        <line x1="10" y1="40" x2="70" y2="40"/>
+        <line x1="40" y1="10" x2="40" y2="70"/>
+        <circle cx="40" cy="40" r="12"/>
+      </svg>
+      <p>Image Vectorielle</p>
+      <span>Colle ou imprime ton image ici</span>
+      <span>Format recommandé : SVG / AI / PDF</span>
+    </div>
+    <div>
+      <div class="rule"></div>
+      <span class="kicker">1 / 1 image vectorielle</span>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P8–P12 — RASTER IMAGES (2 par page = 5 pages = 10 images)
+════════════════════════════════════════════════════════════ -->
+
+<!-- PAGE 8 : Raster 1 + 2 -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Images raster · Deuxième projet</span>
+    <div class="img-placeholder" style="height:82mm;">
+      <!-- <img src="raster-01.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 1/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <div class="img-placeholder" style="height:82mm;">
+      <!-- <img src="raster-02.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 2/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <span class="kicker" style="margin-top:1mm;">1–2 / 10</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- PAGE 9 : Raster 3 + 4 -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Images raster · Deuxième projet</span>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 3/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 4/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <span class="kicker" style="margin-top:1mm;">3–4 / 10</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- PAGE 10 : Raster 5 + 6 -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Images raster · Deuxième projet</span>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 5/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 6/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <span class="kicker" style="margin-top:1mm;">5–6 / 10</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- PAGE 11 : Raster 7 + 8 -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Images raster · Deuxième projet</span>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 7/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 8/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <span class="kicker" style="margin-top:1mm;">7–8 / 10</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- PAGE 12 : Raster 9 + 10 -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Images raster · Deuxième projet</span>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 9/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <div class="img-placeholder" style="height:82mm;">
+      <svg width="12mm" height="12mm" viewBox="0 0 48 48" fill="none" stroke="rgba(10,10,10,0.2)" stroke-width="1.5"><rect x="4" y="4" width="40" height="40" rx="2"/><circle cx="16" cy="16" r="5"/><polyline points="4,32 16,20 26,30 34,22 44,32"/></svg>
+      <p>Image Raster 10/10</p>
+      <span>Colle ou imprime ton image ici</span>
+    </div>
+    <span class="kicker" style="margin-top:1mm;">9–10 / 10</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P13 — QR CODE
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker">Scanner pour voir le site</span>
+    <div class="qr-wrap">
+      <img
+        class="qr-img"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://nico-sung.github.io/genuary/&color=0a0a0a&bgcolor=ffffff&margin=10"
+        alt="QR Code — nico-sung.github.io/genuary"
+        width="208"
+        height="208"
+      />
+      <div class="qr-url">
+        <em>nico-sung</em>.github.io<br>/genuary/
+      </div>
+    </div>
+    <div>
+      <div class="rule"></div>
+      <p class="body" style="text-align:center;">
+        31 sketches génératifs en ligne.<br>
+        Ouvre sur desktop pour la meilleure expérience.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P14 — COLOPHON
+════════════════════════════════════════════════════════════ -->
+<div class="page dark">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker" style="opacity:0.25;">Colophon</span>
+    <div class="p14-head">TOOLS<br>&amp;<br>CRED-<br>ITS</div>
+    <div class="colophon-line">
+      <strong>Code</strong> p5.js · HTML5 · CSS3 · GLSL · Rive<br>
+      <strong>Type</strong> Outfit (Google Fonts)<br>
+      <strong>Éditeur</strong> VS Code<br>
+      <strong>Hébergement</strong> GitHub Pages<br>
+      <strong>Chatbot</strong> Rive (No-AI)<br>
+      <strong>Défi</strong> Genuary 2025 — genuary.art
+    </div>
+    <div>
+      <div class="rule-white"></div>
+      <div class="colophon-line">
+        <strong>Nicolas Sung</strong> · Janvier 2025<br>
+        Tous droits réservés · Code open-source sur GitHub
+      </div>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P15 — SPREAD GRAPHIQUE
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <!-- Pattern inspiré du sketch Fibonacci (jour 3) -->
+  <svg class="pattern-bg" viewBox="0 0 420 595" fill="none" stroke="#0a0a0a" stroke-width="0.5">
+    <!-- Golden spiral approximation -->
+    <g transform="translate(210,297)">
+      <circle cx="0"   cy="0"   r="240"/>
+      <circle cx="0"   cy="0"   r="148"/>
+      <circle cx="0"   cy="0"   r="91"/>
+      <circle cx="0"   cy="0"   r="56"/>
+      <circle cx="0"   cy="0"   r="35"/>
+      <circle cx="0"   cy="0"   r="21"/>
+      <circle cx="0"   cy="0"   r="13"/>
+      <circle cx="0"   cy="0"   r="8"/>
+      <circle cx="0"   cy="0"   r="5"/>
+      <line x1="-240" y1="0" x2="240" y2="0"/>
+      <line x1="0" y1="-240" x2="0" y2="240"/>
+    </g>
+  </svg>
+  <div class="p col between" style="height:100%; position:relative; z-index:1;">
+    <span class="kicker">Genuary 2025</span>
+    <div style="text-align:center;">
+      <div style="font-size:8mm;font-weight:900;letter-spacing:-0.04em;line-height:0.88;text-transform:uppercase;color:var(--text);">
+        31<br>JOURS,<br>31<br>ŒUVRES.
+      </div>
+    </div>
+    <span class="kicker" style="text-align:right;">Nicolas Sung</span>
+  </div>
+</div>
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     P16 — BACK COVER
+════════════════════════════════════════════════════════════ -->
+<div class="page red">
+  <div class="p col between" style="height:100%;">
+    <span class="kicker" style="color:rgba(255,255,255,0.4);">Quatrième de couverture</span>
+    <div class="p16-quote">
+      "LE CODE<br>
+      EST<br>
+      ART."
+    </div>
+    <div>
+      <div class="rule-white"></div>
+      <div class="p16-url">
+        genuary.art &nbsp;·&nbsp; Nicolas Sung<br>
+        nico-sung.github.io/genuary &nbsp;·&nbsp; 2025
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
