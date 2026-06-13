@@ -11,8 +11,90 @@
             href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+        <style>
+            /* ── LOADER ──────────────────────────────────────────── */
+            .loader {
+                position: fixed;
+                inset: 0;
+                z-index: 1000;
+                background: #0a0a0a;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1);
+                will-change: transform;
+            }
+
+            .loader--exit {
+                transform: translateY(-100%);
+            }
+
+            .loader__title {
+                font-family: 'Outfit', system-ui, sans-serif;
+                font-size: clamp(4.5rem, 20vw, 16rem);
+                font-weight: 900;
+                letter-spacing: -0.05em;
+                line-height: 1;
+                text-transform: uppercase;
+                color: #ffffff;
+                user-select: none;
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.55s ease-out, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            .loader__title--visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .loader__counter {
+                font-family: 'Outfit', system-ui, sans-serif;
+                font-size: clamp(1.1rem, 3.5vw, 2.2rem);
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                color: #c41e3a;
+                margin-top: 1.2rem;
+                font-variant-numeric: tabular-nums;
+                user-select: none;
+                min-width: 3ch;
+                text-align: center;
+                opacity: 0;
+                transition: opacity 0.3s ease-out;
+            }
+
+            .loader__counter--visible {
+                opacity: 1;
+            }
+
+            .loader__bar-wrap {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: rgba(255, 255, 255, 0.06);
+            }
+
+            .loader__bar {
+                height: 100%;
+                width: 0%;
+                background: #c41e3a;
+            }
+        </style>
     </head>
     <body>
+        <!-- ── LOADING SCREEN ───────────────────────────────────── -->
+        <div class="loader" id="loader" aria-hidden="true">
+            <span class="loader__title" id="loader-title">Genuary</span>
+            <span class="loader__counter" id="loader-counter">01</span>
+            <div class="loader__bar-wrap">
+                <div class="loader__bar" id="loader-bar"></div>
+            </div>
+        </div>
+
         <div class="viewport">
             <header class="studio-name" aria-label="Nom du studio">
                 <span class="studio-name__text">Genuary</span>
@@ -71,6 +153,49 @@
         </div>
 
         <script>
+            /* ── LOADER ──────────────────────────────────────────── */
+            (function () {
+                var loader  = document.getElementById('loader');
+                var title   = document.getElementById('loader-title');
+                var counter = document.getElementById('loader-counter');
+                var bar     = document.getElementById('loader-bar');
+                var TOTAL   = 31;
+                var STEP_MS = 42;   /* ms per jour — 31 × 42 ≈ 1.3 s */
+                var day     = 0;
+
+                function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+                /* 1 — title appears */
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        title.classList.add('loader__title--visible');
+                    });
+                });
+
+                /* 2 — counter starts after title transition (≈ 320 ms) */
+                setTimeout(function () {
+                    counter.classList.add('loader__counter--visible');
+
+                    (function tick() {
+                        day++;
+                        counter.textContent = pad(day);
+                        bar.style.width = (day / TOTAL * 100) + '%';
+
+                        if (day < TOTAL) {
+                            setTimeout(tick, STEP_MS);
+                        } else {
+                            /* 3 — brief hold, then slide up */
+                            setTimeout(function () {
+                                loader.classList.add('loader--exit');
+                                loader.addEventListener('transitionend', function () {
+                                    loader.style.display = 'none';
+                                }, { once: true });
+                            }, 180);
+                        }
+                    })();
+                }, 320);
+            })();
+
             (function () {
                 const TITLES = {
                     1: "One color, one shape",
