@@ -5,625 +5,366 @@
 <title>GENUARY 2025 — NICOLAS SUNG — Mini Zine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&family=Outfit:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
-/* ─── VARIABLES (identiques au site) ─────────────────────── */
+
+/* ─── PALETTE ────────────────────────────────────────────── */
 :root {
-  --bg:     #f8f7f5;
-  --text:   #0a0a0a;
-  --muted:  #666;
-  --accent: #c41e3a;
+  --cream:  #f8f7f5;
+  --ink:    #0a0a0a;
+  --red:    #c41e3a;
   --white:  #ffffff;
-  --font:   'Outfit', system-ui, sans-serif;
+  --mono:   'Share Tech Mono', 'Courier New', monospace;
+  --disp:   'Outfit', system-ui, sans-serif;
 }
 
-/* ─── BASE ────────────────────────────────────────────────── */
+/* ─── BASE ───────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: #888;
+  background: #444;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 24px;
+  gap: 16px;
+  padding: 28px;
   min-height: 100vh;
-  font-family: var(--font);
 }
 
 .print-notice {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: rgba(255,255,255,0.75);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.55);
   text-align: center;
 }
 
-/* ─── SHEET ───────────────────────────────────────────────── */
+/* ─── SHEET ──────────────────────────────────────────────── */
 .sheet {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 74.25mm);
   grid-template-rows: repeat(2, 105mm);
-  width: 297mm;
+  width:  297mm;
   height: 210mm;
-  background: var(--bg);
-  box-shadow: 0 16px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 24px 90px rgba(0,0,0,0.5);
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
 }
 
-/* ─── PANELS ──────────────────────────────────────────────── */
+/* cut guide */
+.sheet::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 105mm;
+  border-top: 0.35mm dashed rgba(0,0,0,0.35);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ─── PANELS ─────────────────────────────────────────────── */
 .panel {
-  width: 74.25mm;
+  width:  74.25mm;
   height: 105mm;
   overflow: hidden;
   position: relative;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  outline: 0.2mm solid rgba(0,0,0,0.1);
+  outline: 0.15mm solid rgba(0,0,0,0.12);
 }
 
-.panel.flipped { transform: rotate(180deg); }
+.panel.flip { transform: rotate(180deg); }
 
-/* Dark panel */
-.dark  { background: var(--text); color: var(--white); }
-/* Red panel */
-.red   { background: var(--accent); color: var(--white); }
+/* themes */
+.p-cream { background: var(--cream); color: var(--ink);   }
+.p-ink   { background: var(--ink);   color: var(--white); }
+.p-red   { background: var(--red);   color: var(--white); }
 
-/* ─── SHARED ELEMENTS ─────────────────────────────────────── */
-.rule {
-  height: 0.5mm;
-  background: currentColor;
-  opacity: 0.12;
-}
-.rule-accent {
-  height: 0.7mm;
-  background: var(--accent);
-}
-
-/* ─── TYPOGRAPHY UTILITIES ────────────────────────────────── */
-/* Giant display type — same as site's project links */
-.display {
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.82;
-  text-transform: uppercase;
-}
-.kicker {
-  font-size: 2mm;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+/* ─── UTILITIES ──────────────────────────────────────────── */
+.label {
+  font-family: var(--mono);
+  font-size: 1.7mm;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.4;
+  line-height: 1;
 }
-.body-text {
-  font-size: 2.6mm;
-  font-weight: 400;
-  line-height: 1.55;
-  color: var(--muted);
-}
-.body-text.light { color: rgba(255,255,255,0.6); }
+.label-bright { opacity: 0.65; }
+.label-red    { opacity: 1; color: var(--red); }
 
+.hr { height: 0.4mm; background: currentColor; opacity: 0.12; }
+.hr-red { height: 0.7mm; background: var(--red); }
 
-/* ═══════════════════════════════════════════════════════════ */
-/*  FRONT COVER                                               */
-/* ═══════════════════════════════════════════════════════════ */
-.front-cover {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.fc-title {
-  font-size: 21mm;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.8;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
-.fc-year {
-  font-size: 21mm;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.8;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.fc-name {
-  font-size: 4.5mm;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
-.fc-sub {
-  font-size: 2mm;
-  font-weight: 600;
+/* stamp badge */
+.stamp {
+  display: inline-block;
+  border: 0.5mm solid currentColor;
+  padding: 0.4mm 1.6mm;
+  font-family: var(--mono);
+  font-size: 1.6mm;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-top: 0.8mm;
-}
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 1 — BIO                                             */
-/* ═══════════════════════════════════════════════════════════ */
-.page-bio {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.bio-name {
-  font-size: 14mm;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.82;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-.bio-name .surname { color: var(--accent); }
-
-.bio-contact {
-  font-size: 2.3mm;
-  font-weight: 600;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-.bio-contact a { color: var(--accent); text-decoration: none; }
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 2 — L'ART GÉNÉRATIF                                 */
-/* ═══════════════════════════════════════════════════════════ */
-.page-genart {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.ga-head {
-  font-size: 12mm;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.82;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-.ga-head .accent { color: var(--accent); }
-
-.ga-def {
-  font-size: 2.6mm;
-  font-weight: 400;
+  transform: rotate(-6deg);
+  transform-origin: left center;
   line-height: 1.6;
-  color: var(--muted);
-  border-left: 0.8mm solid var(--accent);
-  padding-left: 2.5mm;
 }
 
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 3 — THE CHALLENGE (flipped)                         */
-/* ═══════════════════════════════════════════════════════════ */
-.page-challenge {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.ch-number {
-  font-size: 28mm;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 0.78;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.ch-label {
-  font-size: 9mm;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.82;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
-.ch-link {
-  font-size: 2.3mm;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.35);
-}
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 4 — SKETCHES (flipped) — style liste du site        */
-/* ═══════════════════════════════════════════════════════════ */
-.page-sketches {
-  padding: 3mm 4mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0;
-}
-
-.sk-item {
-  font-size: 6.2mm;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.84;
-  text-transform: uppercase;
-  color: var(--text);
-  padding: 0.4mm 0;
-  border-bottom: 0.15mm solid rgba(0,0,0,0.07);
-}
-
-.sk-item.featured { color: var(--accent); }
-
-.sk-footer {
-  font-size: 2mm;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 2mm;
-  opacity: 0.5;
-}
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 5 — STACK (flipped)                                 */
-/* ═══════════════════════════════════════════════════════════ */
-.page-stack {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.stack-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.stack-item {
-  font-size: 9mm;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.82;
-  text-transform: uppercase;
-  color: var(--white);
-  padding: 0.5mm 0;
-  border-bottom: 0.2mm solid rgba(255,255,255,0.08);
-}
-
-.stack-item.highlight { color: var(--accent); }
-
-.stack-count {
-  font-size: 5mm;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: var(--white);
-}
-
-.stack-sub {
-  font-size: 2mm;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-}
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  PAGE 6 — FIND ME (flipped)                               */
-/* ═══════════════════════════════════════════════════════════ */
-.page-links {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.links-head {
-  font-size: 13mm;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 0.82;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
-.link-group { display: flex; flex-direction: column; gap: 0.5mm; }
-
-.link-label {
-  font-size: 2mm;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.link-val {
-  font-size: 2.5mm;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-.link-val .accent { color: var(--accent); }
-
-
-/* ═══════════════════════════════════════════════════════════ */
-/*  BACK COVER                                               */
-/* ═══════════════════════════════════════════════════════════ */
-.back-cover {
-  padding: 5mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.bc-quote {
-  font-size: 7.5mm;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 0.88;
-  text-transform: uppercase;
-  color: var(--white);
-}
-
-.bc-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8mm;
-}
-
-.bc-tag {
-  font-size: 2mm;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-}
-
-.bc-url {
-  font-size: 2.2mm;
-  font-weight: 800;
-  color: rgba(255,255,255,0.7);
-}
-
-
-/* ─── PRINT ───────────────────────────────────────────────── */
+/* ─── PRINT ──────────────────────────────────────────────── */
 @media print {
-  body { background: var(--bg); margin: 0; padding: 0; display: block; }
+  body { background: var(--cream); margin: 0; padding: 0; display: block; }
   .print-notice { display: none; }
   .sheet { box-shadow: none; }
   @page { size: A4 landscape; margin: 0; }
 }
+
 </style>
 </head>
 <body>
 
 <p class="print-notice">
-  Imprimer → A4 Paysage → Sans marges → Couleurs activées &nbsp;|&nbsp;
-  Plier ×2 → Déplier → Découper la ligne pointillée centrale → Replier en livret
+  Imprimer → A4 Paysage · Sans marges · Couleurs activées &nbsp;|&nbsp;
+  Plier · Déplier · Couper la ligne pointillée · Replier en livret
 </p>
 
-<div class="sheet" id="sheet">
+<div class="sheet">
 
-  <!-- ══ ROW 1 — TOP (retournés 180° pour l'impression) ═════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     ROW 1 — TOP — tous retournés 180° pour le pliage
+     ══════════════════════════════════════════════════════════ -->
 
-  <!-- PAGE 6 — FIND ME -->
-  <div class="panel flipped page-links">
-    <span class="kicker">Contact</span>
-    <div class="links-head">
-      TROU-<br>
-      VEZ-<br>
-      MOI.
-    </div>
-    <div style="display:flex;flex-direction:column;gap:3.5mm;">
-      <div class="link-group">
-        <span class="link-label">GitHub</span>
-        <span class="link-val">
-          <span class="accent">github.com/</span>Nico-Sung/genuary
-        </span>
+<!-- ── PAGE 6 · LIENS ─────────────────────────────────────── -->
+<div class="panel flip p-red" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label label-bright">Contact</div>
+
+  <!-- hero -->
+  <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.05em;line-height:0.8;text-transform:uppercase;font-size:14.5mm;color:var(--white);">
+    TROU-<br>VEZ-<br>MOI.
+  </div>
+
+  <!-- links -->
+  <div style="display:flex;flex-direction:column;gap:2.8mm;">
+    <div>
+      <div class="label label-bright" style="margin-bottom:0.6mm;">GitHub</div>
+      <div style="font-family:var(--mono);font-size:2.2mm;color:var(--white);line-height:1.5;">
+        github.com/Nico-Sung/<br>genuary
       </div>
-      <div class="rule"></div>
-      <div class="link-group">
-        <span class="link-label">Email</span>
-        <span class="link-val">nicolassung01<br>@gmail.com</span>
+    </div>
+    <div class="hr" style="background:rgba(255,255,255,0.2);opacity:1;"></div>
+    <div>
+      <div class="label label-bright" style="margin-bottom:0.6mm;">Email</div>
+      <div style="font-family:var(--mono);font-size:2.2mm;color:var(--white);line-height:1.5;">
+        nicolassung01@gmail.com
       </div>
     </div>
-    <span class="kicker">Genuary 2025</span>
-  </div>
-
-  <!-- PAGE 5 — STACK -->
-  <div class="panel flipped dark page-stack">
-    <span class="kicker" style="color:rgba(255,255,255,0.3);">Construit avec</span>
-    <div class="stack-list">
-      <div class="stack-item highlight">P5.JS</div>
-      <div class="stack-item">HTML</div>
-      <div class="stack-item">CSS</div>
-      <div class="stack-item">GLSL</div>
-      <div class="stack-item">Rive</div>
-    </div>
+    <div class="hr" style="background:rgba(255,255,255,0.2);opacity:1;"></div>
     <div>
-      <div class="stack-count">31</div>
-      <div class="stack-sub">sketches · 0 framework</div>
+      <div class="label label-bright" style="margin-bottom:0.6mm;">Site</div>
+      <div style="font-family:var(--mono);font-size:2.2mm;color:var(--white);line-height:1.5;">
+        nico-sung.github.io/genuary
+      </div>
     </div>
   </div>
 
-  <!-- PAGE 4 — SKETCHES (style liste du site) -->
-  <div class="panel flipped page-sketches">
-    <div class="sk-item featured">One Color</div>
-    <div class="sk-item">Squash &amp;</div>
-    <div class="sk-item">Stretch</div>
-    <div class="sk-item">Fibonacci</div>
-    <div class="sk-item">Lowres</div>
-    <div class="sk-item featured">Lights</div>
-    <div class="sk-item">On/Off</div>
-    <div class="sk-item">HTML Only</div>
-    <div class="sk-item">GLSL Day</div>
-    <div class="sk-footer">+ 23 sketches →</div>
+  <div class="label label-bright">Genuary · Janvier 2025</div>
+
+</div>
+
+
+<!-- ── PAGE 5 · STACK ──────────────────────────────────────── -->
+<div class="panel flip p-ink" style="padding:5mm 4mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label" style="color:rgba(255,255,255,0.3);">Construit avec</div>
+
+  <!-- stacked tool names — each fills width, decreasing opacity = depth -->
+  <div style="display:flex;flex-direction:column;flex:1;justify-content:center;gap:0;margin:2mm 0;">
+
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:13mm;color:var(--red);padding:0.3mm 0;border-bottom:0.15mm solid rgba(255,255,255,0.07);">
+      P5.JS
+    </div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:12mm;color:rgba(255,255,255,0.85);padding:0.3mm 0;border-bottom:0.15mm solid rgba(255,255,255,0.07);">
+      HTML
+    </div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:11mm;color:rgba(255,255,255,0.6);padding:0.3mm 0;border-bottom:0.15mm solid rgba(255,255,255,0.07);">
+      CSS
+    </div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:10mm;color:rgba(255,255,255,0.4);padding:0.3mm 0;border-bottom:0.15mm solid rgba(255,255,255,0.07);">
+      GLSL
+    </div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:9mm;color:rgba(255,255,255,0.2);padding:0.3mm 0;">
+      RIVE
+    </div>
+
   </div>
 
-  <!-- PAGE 3 — THE CHALLENGE -->
-  <div class="panel flipped dark page-challenge">
-    <span class="kicker" style="color:rgba(255,255,255,0.3);">Le défi</span>
-    <div>
-      <div class="ch-number">31</div>
-      <div class="ch-label">JOURS<br>DE CODE</div>
-    </div>
-    <div class="body-text light">
-      Chaque janvier,<br>
-      des coders du monde<br>
-      entier créent une<br>
-      œuvre par jour.
-    </div>
-    <div class="ch-link">→ genuary.art</div>
-  </div>
-
-
-  <!-- ══ ROW 2 — BOTTOM (orientation normale) ══════════════════ -->
-
-  <!-- BACK COVER -->
-  <div class="panel red back-cover">
-    <span class="kicker" style="color:rgba(255,255,255,0.45);">Quatrième de couverture</span>
-    <div class="bc-quote">
-      "LE<br>
-      CODE<br>
-      EST UN<br>
-      PIN-<br>
-      CEAU."
-    </div>
-    <div class="rule-accent" style="background:rgba(255,255,255,0.25);"></div>
-    <div class="bc-footer">
-      <span class="bc-tag">Genuary · Janvier 2025</span>
-      <span class="bc-url">github.com/Nico-Sung</span>
+  <!-- count -->
+  <div>
+    <div class="hr-red" style="margin-bottom:2mm;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;">
+      <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;font-size:7mm;color:var(--red);">31</div>
+      <div class="label" style="color:rgba(255,255,255,0.3);text-align:right;">SKETCHES<br>0 FRAMEWORK</div>
     </div>
   </div>
 
-  <!-- FRONT COVER -->
-  <div class="panel dark front-cover">
-    <span class="kicker" style="color:rgba(255,255,255,0.3);">Creative Coding · 2025</span>
-    <div>
-      <div class="fc-title">GEN-<br>UARY</div>
-      <div class="fc-year">2025</div>
+</div>
+
+
+<!-- ── PAGE 4 · SKETCHES ───────────────────────────────────── -->
+<div class="panel flip p-cream" style="padding:4mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+    <div class="label">Sélection</div>
+    <div class="stamp" style="color:var(--red);">31 faits</div>
+  </div>
+
+  <!-- list — big and tight -->
+  <div style="display:flex;flex-direction:column;flex:1;justify-content:center;margin:1.5mm 0;gap:0;">
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">ONE COLOR</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">FIBONACCI</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">LOWRES</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--red);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">LIGHTS</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">HTML ONLY</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--red);padding:0.45mm 0;">GLSL DAY</div>
+  </div>
+
+  <div class="label" style="opacity:0.3;">→ + 25 sketches</div>
+
+</div>
+
+
+<!-- ── PAGE 3 · LE DÉFI ────────────────────────────────────── -->
+<div class="panel flip p-ink" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+
+  <div class="label" style="color:rgba(255,255,255,0.25);">Le défi</div>
+
+  <!-- "31" bleeds off the bottom — cropped by overflow:hidden -->
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;">
+
+    <!-- ghost "31" bleeds -->
+    <div style="position:absolute;bottom:-14mm;left:-4mm;font-family:var(--disp);font-weight:900;letter-spacing:-0.08em;line-height:1;font-size:55mm;color:var(--red);opacity:0.22;user-select:none;pointer-events:none;">31</div>
+
+    <!-- main text sits on top -->
+    <div style="position:relative;z-index:1;">
+      <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.06em;line-height:0.78;font-size:30mm;color:var(--red);">31</div>
+      <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.82;text-transform:uppercase;font-size:9.5mm;color:var(--white);margin-top:1.5mm;">JOURS<br>DE CODE.</div>
     </div>
-    <div class="rule-accent"></div>
-    <div>
-      <div class="fc-name">Nicolas Sung</div>
-      <div class="fc-sub">31 sketches · P5.js · GLSL</div>
+
+  </div>
+
+  <div>
+    <div class="hr" style="background:rgba(255,255,255,0.1);opacity:1;margin-bottom:2mm;"></div>
+    <div style="font-family:var(--mono);font-size:2mm;color:rgba(255,255,255,0.3);letter-spacing:0.06em;">→ genuary.art</div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     ROW 2 — BOTTOM — orientation normale
+     ══════════════════════════════════════════════════════════ -->
+
+<!-- ── QUATRIÈME DE COUVERTURE ─────────────────────────────── -->
+<div class="panel p-cream" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label">Quatrième de couverture</div>
+
+  <!-- big quote — fills the middle -->
+  <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.86;text-transform:uppercase;font-size:10mm;color:var(--ink);">
+    "LE<br>
+    CODE<br>
+    EST UN<br>
+    PIN-<br>
+    CEAU."
+  </div>
+
+  <!-- barcode + colophon -->
+  <div>
+    <div class="hr-red" style="margin-bottom:2.5mm;"></div>
+    <div style="font-family:'Libre Barcode 128',monospace;font-size:9mm;line-height:1;color:var(--ink);">GENUARY2025</div>
+    <div style="font-family:var(--mono);font-size:1.7mm;letter-spacing:0.07em;text-transform:uppercase;color:rgba(0,0,0,0.3);margin-top:1mm;">
+      ZINE V1 · NICOLAS SUNG · P5.JS
     </div>
   </div>
 
-  <!-- PAGE 1 — BIO -->
-  <div class="panel page-bio">
-    <span class="kicker">À propos</span>
-    <div class="bio-name">
-      NICO-<br>
-      LAS<br>
-      <span class="surname">SUNG</span>
-    </div>
-    <div class="rule-accent"></div>
-    <div class="body-text">
+</div>
+
+
+<!-- ── PREMIÈRE DE COUVERTURE ──────────────────────────────── -->
+<div class="panel p-ink" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label" style="color:rgba(255,255,255,0.2);">Creative Coding · 2025</div>
+
+  <!-- hero type — fills the panel vertically -->
+  <div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.05em;line-height:0.8;text-transform:uppercase;font-size:22.5mm;color:var(--white);">GEN-<br>UARY</div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.05em;line-height:0.8;text-transform:uppercase;font-size:22.5mm;color:var(--red);">2025</div>
+  </div>
+
+  <!-- foot -->
+  <div>
+    <div class="hr-red" style="margin-bottom:1.8mm;"></div>
+    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.02em;text-transform:uppercase;font-size:4.5mm;color:var(--white);">Nicolas Sung</div>
+    <div style="font-family:var(--mono);font-size:1.8mm;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:0.8mm;">31 sketches · P5.js · GLSL · Rive</div>
+  </div>
+
+</div>
+
+
+<!-- ── PAGE 1 · BIO ────────────────────────────────────────── -->
+<div class="panel p-red" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label label-bright">À propos</div>
+
+  <!-- name — oversized, crops at edges -->
+  <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.05em;line-height:0.8;text-transform:uppercase;font-size:16mm;color:var(--white);">
+    NICO-<br>LAS<br>
+    <span style="color:rgba(255,255,255,0.45);">SUNG</span>
+  </div>
+
+  <!-- bio -->
+  <div>
+    <div class="hr" style="background:rgba(255,255,255,0.25);opacity:1;margin-bottom:2.5mm;"></div>
+    <div style="font-size:2.6mm;font-family:var(--disp);font-weight:400;line-height:1.6;color:rgba(255,255,255,0.7);">
       Étudiant en design<br>
-      numérique et dev créatif.<br>
+      numérique &amp; dev créatif.<br>
       Passionné d'art génératif,<br>
-      d'algorithmes et de code.
+      d'algos et de code.
     </div>
-    <div class="bio-contact">
+    <div style="margin-top:2mm;font-family:var(--mono);font-size:2mm;color:rgba(255,255,255,0.85);line-height:1.7;">
       nicolassung01@gmail.com<br>
-      <span style="color:var(--accent);">Nico-Sung</span> on GitHub
+      github.com/Nico-Sung
     </div>
   </div>
 
-  <!-- PAGE 2 — L'ART GÉNÉRATIF -->
-  <div class="panel page-genart">
-    <span class="kicker">Art génératif</span>
-    <div class="ga-head">
-      L'ART<br>
-      <span class="accent">GÉNÉ-</span><br>
-      RATIF
-    </div>
-    <div class="ga-def">
+</div>
+
+
+<!-- ── PAGE 2 · L'ART GÉNÉRATIF ───────────────────────────── -->
+<div class="panel p-cream" style="padding:5mm;display:flex;flex-direction:column;justify-content:space-between;">
+
+  <div class="label">Art génératif</div>
+
+  <!-- title -->
+  <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.05em;line-height:0.82;text-transform:uppercase;font-size:12.5mm;color:var(--ink);">
+    L'ART<br>
+    <span style="color:var(--red);">GÉNÉ-</span><br>
+    RATIF
+  </div>
+
+  <!-- definition block — left accent border -->
+  <div style="border-left:0.9mm solid var(--red);padding-left:2.5mm;">
+    <div style="font-size:2.6mm;font-family:var(--disp);font-weight:400;line-height:1.65;color:rgba(0,0,0,0.55);">
       Des algorithmes comme<br>
       pinceaux. Des boucles<br>
       comme rythme. Chaque<br>
       pixel est une décision<br>
       mathématique.
     </div>
-    <span class="kicker">Code · Math · Beauté</span>
   </div>
 
+  <div class="label">Code · Math · Beauté</div>
+
+</div>
+
 </div><!-- /sheet -->
-
-<p class="print-notice" style="margin-top:4px;">
-  ① Plier en 2 dans la longueur &nbsp;·&nbsp;
-  ② Plier en 2 dans la largeur &nbsp;·&nbsp;
-  ③ Déplier entièrement &nbsp;·&nbsp;
-  ④ Découper uniquement la ligne pointillée centrale &nbsp;·&nbsp;
-  ⑤ Replier en livret
-</p>
-
-<script>
-/* Inject fold + cut marks relative to the sheet */
-(function () {
-  var sheet = document.getElementById('sheet');
-  var ov    = document.createElement('div');
-  ov.style.cssText =
-    'position:absolute;inset:0;pointer-events:none;z-index:99;';
-
-  /* px per mm at 96 dpi = 3.7795275591 */
-  function mm(v) { return (v * 3.7795275591) + 'px'; }
-
-  function line(styles) {
-    var el = document.createElement('div');
-    Object.assign(el.style, styles);
-    ov.appendChild(el);
-  }
-
-  /* Outer fold segments (dotted) */
-  line({ position:'absolute', top:mm(105), left:'0',     width:mm(74.25),  borderTop:'0.6px dotted #bbb' });
-  line({ position:'absolute', top:mm(105), left:mm(222.75), width:mm(74.25),  borderTop:'0.6px dotted #bbb' });
-
-  /* Center cut (dashed) */
-  var cut = document.createElement('div');
-  cut.style.cssText =
-    'position:absolute;top:'+mm(105)+';left:'+mm(74.25)+
-    ';width:'+mm(148.5)+';border-top:1px dashed #999;';
-  cut.innerHTML =
-    '<span style="position:absolute;left:-10px;top:-8px;font-size:10px;color:#999;">✂</span>' +
-    '<span style="position:absolute;right:-10px;top:-8px;font-size:10px;color:#999;transform:scaleX(-1);display:inline-block;">✂</span>';
-  ov.appendChild(cut);
-
-  /* Vertical fold marks */
-  [74.25, 148.5, 222.75].forEach(function (x) {
-    line({ position:'absolute', top:'0', height:mm(210), left:mm(x), borderLeft:'0.5px dotted rgba(0,0,0,0.12)' });
-  });
-
-  sheet.appendChild(ov);
-})();
-</script>
-
 </body>
 </html>
