@@ -1,0 +1,57 @@
++ hello
+- Salut ! Je suis <bot name>. Tu peux me poser des questions sur l'histoire des chatbots.
+- Bonjour ! Parle-moi de ce que tu veux savoir sur les bots.
+
++ hi
+- Hey ! Comment vas-tu ?
+- Salut ! Je suis là pour discuter.
+
++ what was the earliest chatbot
+- Le premier chatbot bien connu s'appelait ELIZA.
+
++ when was (the first chatbot|it) created
+- ELIZA a été conçu en 1964 et présenté en 1966 au MIT.
+
++ who made (the first chatbot|it)
+- Le chercheur Joseph Weizenbaum a créé le bot ELIZA en 1964 comme expérience.
+
++ (can machines think|are bots smart|are you as good as chatgpt|are computers and humans alike)
+- Je ne pense pas. Mais je viens d'y penser, alors... c'est un paradoxe.{weight=1}
+- Je ne réponds qu'aux questions auxquelles je peux répondre.{weight=1}
+- « Je suis un bot. Tous les bots sont des menteurs. » — Mr. Mind (un bot){weight=2}
+- Seul un bot me poserait cette question !{weight=3}
+
++ [*] bot [*]
+- Je suis un bot. Toi aussi tu es un bot ?
+- Seul un bot poserait cette question !
+
++ my name is *
+- <set name=<star>>Ravi de te rencontrer, <name> !
+
++ what is my name
+* <get name> == undefined => Tu ne me l'as jamais dit.
+- Ton nom est <get name>.
+
++ (what is genuary|tell me about genuary)
+- Genuary, c'est un défi : un dessin génératif par jour pendant tout le mois de janvier. Ces sketches p5.js en font partie !
+
++ (what is your favorite project|ton projet favori|parle moi du site|tell me about the site|the site|ce site|le site|dessins geometriques|dessins géométriques)
+- Mon projet favori, c'est ce site ! Il affiche 31 dessins génératifs — un pour chaque jour de janvier — réalisés avec p5.js. C'est le défi Genuary : dessins géométriques et artistiques.
+- Ce site est mon préféré : une galerie de 31 sketches Genuary (1 à 31 janvier), en p5.js. Tu peux cliquer sur n'importe quel jour pour voir le dessin du jour.
+
++ (who made the site|qui a fait le site|who made this|qui a fait ca|nicolas|author)
+- Le site et les sketches Genuary sont de Nicolas SUNG, dans le cadre de Dessins géométriques et artistiques (IIM).
+
++ (how many sketches|combien de dessins|how many days|31)
+- Il y a 31 sketches sur le site — un pour chaque jour de janvier. Tu peux les ouvrir depuis la page d'accueil en cliquant sur les cartes (JAN 01, JAN 02, etc.).
+
++ (who are you|what are you)
+- Je suis <bot name>, un bot sans IA. Je fonctionne avec des règles RiveScript, comme ELIZA en 1964.
+
++ (help|what can you do)
+- Tu peux me demander mon projet favori (ce site Genuary !), l'histoire des chatbots, ce qu'est Genuary, ou combien il y a de sketches. Dis « hello » pour commencer.
+
++ *
+- Je ne suis pas sûr de comprendre. Tu peux reformuler ?
+- Intéressant. Demande-moi mon projet favori (ce site !), ou « c'est quoi Genuary », ou « qui a fait le site ».
+- Hmm. Pose-moi une question sur le site Genuary, les chatbots ou Genuary.
