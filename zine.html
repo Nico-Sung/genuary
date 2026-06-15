@@ -216,14 +216,45 @@ body {
     <div class="stamp" style="color:var(--red);">31 faits</div>
   </div>
 
-  <!-- list — big and tight -->
-  <div style="display:flex;flex-direction:column;flex:1;justify-content:center;margin:1.5mm 0;gap:0;">
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">ONE COLOR</div>
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">FIBONACCI</div>
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">LOWRES</div>
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--red);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">LIGHTS</div>
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--ink);padding:0.45mm 0;border-bottom:0.15mm solid rgba(0,0,0,0.07);">HTML ONLY</div>
-    <div style="font-family:var(--disp);font-weight:900;letter-spacing:-0.04em;line-height:0.84;text-transform:uppercase;font-size:6.5mm;color:var(--red);padding:0.45mm 0;">GLSL DAY</div>
+  <!-- grid of live sketch previews -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:1.5mm;flex:1;margin:1.5mm 0;min-height:0;">
+
+    <div style="position:relative;overflow:hidden;background:#0a0a14;">
+      <iframe src="sketches/p5js/sketches/1 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="One color, one shape"></iframe>
+    </div>
+
+    <div style="position:relative;overflow:hidden;background:#000;">
+      <iframe src="sketches/p5js/sketches/3 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="Fibonacci forever"></iframe>
+    </div>
+
+    <div style="position:relative;overflow:hidden;background:#1a1c2c;">
+      <iframe src="sketches/p5js/sketches/4 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="Lowres"></iframe>
+    </div>
+
+    <div style="position:relative;overflow:hidden;background:#000;">
+      <iframe src="sketches/p5js/sketches/6 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="Lights on/off"></iframe>
+    </div>
+
+    <div style="position:relative;overflow:hidden;background:#f0f0f0;">
+      <iframe src="sketches/p5js/sketches/28 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="HTML only"></iframe>
+    </div>
+
+    <div style="position:relative;overflow:hidden;background:#000;">
+      <iframe src="sketches/p5js/sketches/31 janvier/index.html"
+              style="position:absolute;top:0;left:0;width:900px;height:900px;border:none;transform:scale(0.135);transform-origin:top left;pointer-events:none;"
+              scrolling="no" loading="lazy" title="GLSL day"></iframe>
+    </div>
+
   </div>
 
   <div class="label" style="opacity:0.3;">→ + 25 sketches</div>
